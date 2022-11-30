@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+void call(){
+    printf("DY{flag}/n");
+}
+
 int main(){
     int A;
     double a;
