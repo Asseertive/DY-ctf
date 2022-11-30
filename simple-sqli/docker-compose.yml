@@ -1,24 +1,45 @@
 version: '3'
 
+networks:
+    simple-sqli:
+
 services:
-  php:
-    #image: docker.dyhs.kr/dy-ctf/php-build:latest
-    image: php-test
-    restart: always
-    volumes:
-      - ./html:/var/www/html
-    ports:
-      - 9000:80
-  mysql:
-    image: mysql:8.0
-    restart: always
-    ports:
-      - 10000:3306
-    environment:
-        - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
-        - MYSQL_DATABASE=${DB_DATABASE}
-        - MYSQL_USER=${DB_USERNAME}
-        - MYSQL_PASSWORD=${DB_PASSWORD}
-    volumes:
-#        - ./db:/var/lib/mysql
-        - ./init:/docker-entrypoint-initdb.d
+    web:
+        image: nginx:latest
+        networks:
+            - simple-sqli
+        ports:
+            - "9000:80"
+        expose:
+            - "80"
+        volumes:
+            - ./src:/src:ro
+            - ./conf/site.conf:/etc/nginx/conf.d/default.conf:ro
+        links:
+            - php
+    php:
+        #image: docker.dyhs.kr/dy-ctf/php:7.4-fpm-alpine
+        image: php-test:latest
+        networks:
+            - simple-sqli
+        environment:
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_HOST=${DB_HOST}
+        volumes:
+            - ./src:/src:ro
+    db:
+        image: mysql:8.0
+        networks:
+            - simple-sqli
+        restart: always
+        ports:
+            - 10000:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - ./init:/docker-entrypoint-initdb.d

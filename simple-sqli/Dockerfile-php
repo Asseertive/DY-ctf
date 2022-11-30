@@ -1,20 +1,41 @@
-FROM ubuntu:18.04
+FROM php:7.4-fpm-alpine
 LABEL maintainer="https://suk.kr"
 
-ENV DEBIAN_FRONTEND=noninteractive
+# Install dependencies
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
+ && apk add --no-cache curl shadow sqlite curl-dev freetype-dev libpng-dev libjpeg-turbo-dev \
+        postgresql-dev imagemagick-dev icu-dev openssl-dev oniguruma-dev libzip-dev
 
-RUN apt-get update
-RUN apt-get install -y apache2
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:ondrej/php
-RUN apt-get update
-RUN apt-get install -y php-fpm
+RUN docker-php-ext-configure gd \
+        --with-freetype=/usr/include/ \
+        --with-jpeg=/usr/include/ \
+ && docker-php-ext-install -j$(nproc) gd exif intl mysqli opcache pdo_mysql pdo_pgsql zip \
+ && apk del --no-cache .build-deps $PHPIZE_DEPS \
+ && rm -rf /var/cache/apk/*
 
-RUN echo "AddType application/x-httpd-php .php .htm .html .inc" >> /etc/apache2/apache2.conf
-RUN echo "AddType application/x-httpd-php-source .phps" >> /etc/apache2/apache2.conf
+# Enable mysqli
+RUN docker-php-ext-enable mysqli
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# PHP Config
+COPY conf/*.ini /usr/local/etc/php/conf.d/
+
+# Disable access log for php-fpm
+RUN sed -e '/access.log/s/^/;/' -i /usr/local/etc/php-fpm.d/docker.conf
+RUN echo -e "[PHP]\nlog_errors = yes" > /usr/local/etc/php/conf.d/errorlog.ini
+
+# Hack to change uid of 'www-data' to 1000
+RUN usermod -u 1000 www-data
+
+# Change working directory
+WORKDIR /src
+
+# UTF-8 default
+ENV LANG=en_US.utf8
 
 EXPOSE 80
 
-CMD ["apachectl", "-D", "FOREGROUND"]
-
-#docker buildx build --platform linux/amd64 -f Dockerfile-php -t docker.dyhs.kr/dy-ctf/php-build:latest --push .
+#docker buildx build --platform linux/amd64 -f Dockerfile-php -t docker.dyhs.kr/dy-ctf/php:7.4-fpm-alpine --push .

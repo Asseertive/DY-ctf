@@ -1,9 +1,9 @@
-CREATE TABLE dyhs.simple_sqli(
+CREATE TABLE dyhs.dy_simple_sqli(
   id VARCHAR(100) PRIMARY KEY,
   pw VARCHAR(100)
 );
 
-INSERT into dyhs.simple_sqli VALUE (
+INSERT into dyhs.dy_simple_sqli VALUE (
     "admin",
-    "DY{fakeflag}"
+    "DY{flag}"
 );
