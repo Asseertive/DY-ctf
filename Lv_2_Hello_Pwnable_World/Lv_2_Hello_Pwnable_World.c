@@ -10,7 +10,7 @@ int main(){
         scanf("%d",&A);
         printf("crack_me : ");
         scanf("%lf",&a);
-        if (A+a == 5){
+        if (A+a == 5.5){
             call();
             return 0;
         }
