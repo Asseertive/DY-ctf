@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  php:
+    image: docker.dyhs.kr/dy-ctf/simple-sqli_php:latest
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - 9000:80
