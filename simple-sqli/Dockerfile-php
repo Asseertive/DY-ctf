@@ -14,4 +14,4 @@ EXPOSE 80
 
 CMD ["apachectl", "-D", "FOREGROUND"]
 
-#docker buildx build --platform linux/amd64 -f Dockerfile-php -t docker.dyhs.kr/dy-ctf/simple-sqli_php:latest --push .
+#docker buildx build --platform linux/amd64 -f Dockerfile-php -t docker.dyhs.kr/dy-ctf/php-build:latest --push .

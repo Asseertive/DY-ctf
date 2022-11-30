@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    image: docker.dyhs.kr/dy-ctf/simple-sqli_php:latest
+    image: docker.dyhs.kr/dy-ctf/php-build:latest
     volumes:
       - ./html:/var/www/html
     ports:
