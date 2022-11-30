@@ -3,7 +3,20 @@ version: '3'
 services:
   php:
     image: docker.dyhs.kr/dy-ctf/php-build:latest
+    restart: always
     volumes:
       - ./html:/var/www/html
     ports:
       - 9000:80
+  mariadb:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 10000:3306
+    environment:
+        - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+        - MYSQL_DATABASE=${DB_DATABASE}
+        - MYSQL_USER=${DB_USERNAME}
+        - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+        - ./db:/var/lib/mysql
