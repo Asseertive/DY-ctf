@@ -38,4 +38,4 @@ ENV LANG=en_US.utf8
 
 EXPOSE 80
 
-#docker buildx build --platform linux/amd64 -f Dockerfile-php -t docker.dyhs.kr/dy-ctf/php:7.4-fpm-alpine --push .
+#docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile-php -t docker.dyhs.kr/dy-ctf/php:7.4-fpm-alpine --push .
