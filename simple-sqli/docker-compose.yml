@@ -2,7 +2,8 @@ version: '3'
 
 services:
   php:
-    image: docker.dyhs.kr/dy-ctf/php-build:latest
+    #image: docker.dyhs.kr/dy-ctf/php-build:latest
+    image: php-test
     restart: always
     volumes:
       - ./html:/var/www/html

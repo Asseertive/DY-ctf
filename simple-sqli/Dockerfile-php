@@ -8,7 +8,10 @@ RUN apt-get install -y apache2
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:ondrej/php
 RUN apt-get update
-RUN apt-get install -y php5.6
+RUN apt-get install -y php-fpm
+
+RUN echo "AddType application/x-httpd-php .php .htm .html .inc" >> /etc/apache2/apache2.conf
+RUN echo "AddType application/x-httpd-php-source .phps" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
 
