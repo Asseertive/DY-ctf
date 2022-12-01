@@ -29,4 +29,6 @@ RUN chmod 440 /flag
 ADD ./conf/prob.xinetd /etc/xinetd.d/prob
 ADD ./conf/start.sh /start.sh
 
+RUN chmod 755 /start.sh
+
 CMD ["/start.sh"]
