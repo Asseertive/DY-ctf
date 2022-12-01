@@ -9,6 +9,8 @@ void g00dg00dg00d(){
 }
 
 int main(){
+    setvbuf(stdout, 0, _IONBF, 0);
+    setvbuf(stdin, 0, _IOLBF, 0);
     char key[10];
     printf("key ? :");
     scanf("%s",key);
