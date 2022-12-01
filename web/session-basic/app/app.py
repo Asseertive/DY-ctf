@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 try:
     FLAG = open('./flag.txt', 'r').read()
+    print(FLAG)
 except:
     FLAG = '[**FLAG**]'
 
