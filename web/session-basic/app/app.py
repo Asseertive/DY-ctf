@@ -65,4 +65,4 @@ if __name__ == '__main__':
     # and also you cannot reveal admin's sesseionid by brute forcing!!! haha
     session_storage[os.urandom(32).hex()] = 'admin'
     print(session_storage)
-    app.run(host='0.0.0.0', port=9002)
+    app.run(host='0.0.0.0', port=8000)
