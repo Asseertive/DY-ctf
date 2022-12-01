@@ -1,0 +1,14 @@
+version: '3'
+
+networks:
+  network:
+
+services:
+  prob:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - network
+    ports:
+      - "8000:8000"

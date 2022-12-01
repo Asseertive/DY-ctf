@@ -8,5 +8,5 @@ service prob
     wait = no
     server = /home/pwn/prob
     type = UNLISTED
-    port = 8080
+    port = 8000
 }
