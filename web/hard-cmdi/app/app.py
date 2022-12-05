@@ -7,6 +7,7 @@ from flag import FLAG
 
 APP = Flask(__name__)
 
+filter_list = ["\"", "$"]
 
 @APP.route('/')
 def index():
@@ -17,6 +18,9 @@ def index():
 def ping():
     if request.method == 'POST':
         host = request.form.get('host')
+        for value in filter_list:
+            if host == value:
+                return render_template('ping_result.html', data='this command is banned.. haha')
         cmd = f'ping -c 3 "{host}"'
         try:
             output = subprocess.check_output(['/bin/sh', '-c', cmd], timeout=5)
