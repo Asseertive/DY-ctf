@@ -1,0 +1,14 @@
+version: '3'
+
+networks:
+  network:
+
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - network
+    ports:
+      - "9004:8000"
