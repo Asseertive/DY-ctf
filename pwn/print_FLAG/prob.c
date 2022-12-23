@@ -5,9 +5,9 @@ void funcfuncfunc(){
 }
 
 int main(){
-    int x;
+    double x;
     double cocoball;
-    scanf("%d",&cocoball);
+    scanf("%lf",&cocoball);
 
     if (cocoball<=1 && cocoball>=2){
         if (cocoball == x){
