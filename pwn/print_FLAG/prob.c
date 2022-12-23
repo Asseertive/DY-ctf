@@ -9,7 +9,7 @@ int main(){
     double cocoball;
     scanf("%lf",&cocoball);
 
-    if (cocoball<=1 && cocoball>=2){
+    if (cocoball>1 && cocoball<2){
         if (cocoball == x){
             funcfuncfunc();
         }
