@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 void call(){
-    printf("DY{flag}/n");
+    printf("DY{This_is_fake_flag}/n");
 }
 
 int main(){

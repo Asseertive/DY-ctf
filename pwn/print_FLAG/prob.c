@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void funcfuncfunc(){
-    puts("DY{FLAG}}");
+    printf("DY{This_is_fake_flag}/n");
 }
 
 int main(){
