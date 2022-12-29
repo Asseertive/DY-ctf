@@ -4,11 +4,11 @@ networks:
   network:
 
 services:
-  flask:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
     networks:
       - network
     ports:
-      - "9001:8000"
+      - "9007:80"

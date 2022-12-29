@@ -9,9 +9,7 @@ services:
         networks:
             - network
         ports:
-            - "9001:80"
-        expose:
-            - "80"
+            - "9005:80"
         volumes:
             - ./src:/src:ro
             - ./conf/site.conf:/etc/nginx/conf.d/default.conf:ro
@@ -34,7 +32,7 @@ services:
             - network
         restart: always
         ports:
-            - 10001:3306
+            - 10002:3306
         environment:
             - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
             - MYSQL_DATABASE=${DB_DATABASE}

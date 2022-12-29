@@ -9,9 +9,7 @@ services:
         networks:
             - network
         ports:
-            - "9001:80"
-        expose:
-            - "80"
+            - "9004:80"
         volumes:
             - ./src:/src:ro
             - ./conf/site.conf:/etc/nginx/conf.d/default.conf:ro
