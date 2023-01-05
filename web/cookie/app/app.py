@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
+from flag import FLAG
 from flask import Flask, request, render_template, make_response, redirect, url_for
 
 app = Flask(__name__)
 
-try:
-    FLAG = open('./flag.txt', 'r').read()
-    print(FLAG)
-except:
-    FLAG = '[**FLAG**]'
 
 users = {
     'guest': 'guest',
