@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from flask import Flask, request, render_template, make_response, redirect, url_for
 
 app = Flask(__name__)
@@ -14,12 +14,14 @@ users = {
     'admin': FLAG
 }
 
+
 @app.route('/')
 def index():
     username = request.cookies.get('username', None)
     if username:
         return render_template('index.html', text=f'Hello {username}, {"flag is " + FLAG if username == "admin" else "you are not admin"}')
     return render_template('index.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,9 +35,10 @@ def login():
         except:
             return '<script>alert("not found user");history.go(-1);</script>'
         if pw == password:
-            resp = make_response(redirect(url_for('index')) )
+            resp = make_response(redirect(url_for('index')))
             resp.set_cookie('username', username)
-            return resp 
+            return resp
         return '<script>alert("wrong password");history.go(-1);</script>'
+
 
 app.run(host='0.0.0.0', port=8000)
