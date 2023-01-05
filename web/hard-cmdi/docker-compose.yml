@@ -11,4 +11,4 @@ services:
     networks:
       - network
     ports:
-      - "9006:8000"
+      - "11005:8000"
