@@ -1,23 +1,21 @@
 #include <stdio.h>
 
-void funcfuncfunc(){
+void funcfuncfunc()
+{
     printf("DY{This_is_fake_flag}/n");
 }
 
-int main(){
-    double x;
+int main()
+{
     double cocoball;
-    scanf("%lf",&cocoball);
+    scanf("%lf", &cocoball);
 
-    if (cocoball>1 && cocoball<2){
-        if (cocoball == x){
-            funcfuncfunc();
-        }
-        else{
-            return 0;
-        }
+    if (cocoball > 1 && cocoball < 2)
+    {
+        funcfuncfunc();
     }
-    else{
+    else
+    {
         return 0;
     }
 }
