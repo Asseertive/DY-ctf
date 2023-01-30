@@ -1,0 +1,16 @@
+version: '3'
+
+networks:
+  network:
+
+services:
+  prob:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - network
+    ports:
+      - "8002:8000"
+    command:
+      - /start.sh
